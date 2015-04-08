@@ -3,6 +3,7 @@ package mx.ipn.escom.entidades;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -27,14 +30,21 @@ import org.hibernate.annotations.Parameter;
 )
 public class Encargado  implements java.io.Serializable {
 
-
-     private int id;
-     private Casa casa;
-     private Usuario usuario;
-     private String telefono;
-     private String contrasena;
-     private Set<Propuesta> propuestas = new HashSet<Propuesta>(0);
-
+    @GenericGenerator(name="generator", strategy="foreign", parameters=@Parameter(name="property", value="usuario"))@Id @GeneratedValue(generator="generator")
+    @Column(name="id", unique=true, nullable=false)
+    @Getter @Setter private int id;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="casa", nullable=false)
+    @Getter @Setter private Casa casa;
+    @OneToOne(fetch=FetchType.LAZY)@PrimaryKeyJoinColumn
+    @Getter @Setter private Usuario usuario;
+    @Column(name="telefono", length=45)
+    @Getter @Setter private String telefono;
+    @Column(name="password", length=45)
+    @Getter @Setter private String contrasena;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="encargado")
+    @Getter @Setter private List<Propuesta> propuestas ;
+    
     public Encargado() {
     }
 
@@ -43,77 +53,13 @@ public class Encargado  implements java.io.Serializable {
         this.casa = casa;
         this.usuario = usuario;
     }
-    public Encargado(Casa casa, Usuario usuario, String telefono, String contrasena, Set<Propuesta> propuestas) {
+    public Encargado(Casa casa, Usuario usuario, String telefono, String contrasena, List<Propuesta> propuestas) {
        this.casa = casa;
        this.usuario = usuario;
        this.telefono = telefono;
        this.contrasena = contrasena;
        this.propuestas = propuestas;
     }
-   
-     @GenericGenerator(name="generator", strategy="foreign", parameters=@Parameter(name="property", value="usuario"))@Id @GeneratedValue(generator="generator")
-
-    
-    @Column(name="id", unique=true, nullable=false)
-    public int getId() {
-        return this.id;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="casa", nullable=false)
-    public Casa getCasa() {
-        return this.casa;
-    }
-    
-    public void setCasa(Casa casa) {
-        this.casa = casa;
-    }
-
-@OneToOne(fetch=FetchType.LAZY)@PrimaryKeyJoinColumn
-    public Usuario getUsuario() {
-        return this.usuario;
-    }
-    
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    
-    @Column(name="telefono", length=45)
-    public String getTelefono() {
-        return this.telefono;
-    }
-    
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    
-    @Column(name="password", length=45)
-    public String getContrasena() {
-        return this.contrasena;
-    }
-    
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="encargado")
-    public Set<Propuesta> getPropuestas() {
-        return this.propuestas;
-    }
-    
-    public void setPropuestas(Set<Propuesta> propuestas) {
-        this.propuestas = propuestas;
-    }
-
-
-
-
 }
 
 
