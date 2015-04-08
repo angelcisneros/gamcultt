@@ -24,7 +24,7 @@ import lombok.Setter;
 @Table(name = "alumno", catalog = "gamcultt")
 public class Alumno implements java.io.Serializable {
 
-    @Id
+    @Id    
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     @Getter @Setter Integer id;
@@ -64,4 +64,7 @@ public class Alumno implements java.io.Serializable {
         this.clases = clases;
     }
 
+    
+    
+    
    }
