@@ -3,6 +3,7 @@ package mx.ipn.escom.entidades;
 
 
 
+
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
