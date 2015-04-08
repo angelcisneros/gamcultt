@@ -47,6 +47,7 @@ public class GaleriaCasa implements java.io.Serializable {
     @Column(name = "path", nullable = false, length = 85)
     @Getter
     @Setter
+    
     private String path;
 
     public GaleriaCasa() {

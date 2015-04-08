@@ -34,6 +34,7 @@ public class GaleriaEvento implements java.io.Serializable {
 
     @Column(name = "nombre", nullable = false, length = 45)
     @Getter @Setter private String nombre;
+    
 
     @Column(name = "extencion", nullable = false, length = 5)
     @Getter @Setter private String extencion;

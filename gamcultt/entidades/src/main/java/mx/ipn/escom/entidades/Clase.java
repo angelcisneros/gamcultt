@@ -72,9 +72,9 @@ public class Clase implements java.io.Serializable {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "alumno_clase", catalog = "gamcultt", joinColumns = {
-        @JoinColumn(name = "clase_profesor", nullable = false, updatable = false),
-        @JoinColumn(name = "clase_taller", nullable = false, updatable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "alumno", nullable = false, updatable = false)})
+    @JoinColumn(name = "clase_profesor", nullable = false, updatable = false),
+    @JoinColumn(name = "clase_taller", nullable = false, updatable = false)}, inverseJoinColumns = {
+    @JoinColumn(name = "alumno", nullable = false, updatable = false)})
     @Getter
     @Setter
     private List<Alumno> alumnos;
