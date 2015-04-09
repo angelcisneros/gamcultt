@@ -60,7 +60,7 @@ public class TallerServicioImpl implements TallerServicio{
 
     @Override
     public String eliminar(Integer id) {
-       Taller taller = tallerRepositorio.busacarPorId(id);
+       Taller taller = tallerRepositorio.buscarPorId(id);
        if (tallerRepositorio.eliminar(taller)) {
             return DELETE_CORRECT + TALLER;
         }
@@ -69,6 +69,6 @@ public class TallerServicioImpl implements TallerServicio{
 
     @Override
     public Taller buscarPorId(Integer id) {
-       return tallerRepositorio.busacarPorId(id);
+       return tallerRepositorio.buscarPorId(id);
     }
 }

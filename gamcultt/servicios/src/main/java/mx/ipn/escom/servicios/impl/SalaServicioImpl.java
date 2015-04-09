@@ -60,7 +60,7 @@ public class SalaServicioImpl implements SalaServicio{
 
     @Override
     public String eliminar(Integer id) {
-       Sala sala = salaRepositorio.busacarPorId(id);
+       Sala sala = salaRepositorio.buscarPorId(id);
        if (salaRepositorio.eliminar(sala)) {
             return DELETE_CORRECT + SALA;
         }
@@ -69,6 +69,6 @@ public class SalaServicioImpl implements SalaServicio{
 
     @Override
     public Sala buscarPorId(Integer id) {
-       return salaRepositorio.busacarPorId(id);
+       return salaRepositorio.buscarPorId(id);
     }
 }

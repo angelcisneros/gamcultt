@@ -60,7 +60,7 @@ public class EventoServicioImpl implements EventoServicio{
 
     @Override
     public String eliminar(Integer id) {
-       Evento evento = eventoRepositorio.busacarPorId(id);
+       Evento evento = eventoRepositorio.buscarPorId(id);
        if (eventoRepositorio.eliminar(evento)) {
             return DELETE_CORRECT + EVENTO;
         }
@@ -69,6 +69,6 @@ public class EventoServicioImpl implements EventoServicio{
 
     @Override
     public Evento buscarPorId(Integer id) {
-       return eventoRepositorio.busacarPorId(id);
+       return eventoRepositorio.buscarPorId(id);
     }
 }

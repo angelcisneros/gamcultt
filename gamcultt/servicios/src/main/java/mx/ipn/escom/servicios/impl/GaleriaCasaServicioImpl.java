@@ -60,7 +60,7 @@ public class GaleriaCasaServicioImpl implements GaleriaCasaServicio{
 
     @Override
     public String eliminar(Integer id) {
-       GaleriaCasa galeriaCasa = galeriaCasaRepositorio.busacarPorId(id);
+       GaleriaCasa galeriaCasa = galeriaCasaRepositorio.buscarPorId(id);
        if (galeriaCasaRepositorio.eliminar(galeriaCasa)) {
             return DELETE_CORRECT + GALERIACASA;
         }
@@ -69,6 +69,6 @@ public class GaleriaCasaServicioImpl implements GaleriaCasaServicio{
 
     @Override
     public GaleriaCasa buscarPorId(Integer id) {
-       return galeriaCasaRepositorio.busacarPorId(id);
+       return galeriaCasaRepositorio.buscarPorId(id);
     }
 }

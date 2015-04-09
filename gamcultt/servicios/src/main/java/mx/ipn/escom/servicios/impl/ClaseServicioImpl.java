@@ -6,9 +6,9 @@
 package mx.ipn.escom.servicios.impl;
 
 import java.util.List;
-import mx.ipn.escom.entidades.Casa;
-import mx.ipn.escom.repositorios.CasaRepositorio;
-import mx.ipn.escom.servicios.CasaServicio;
+import mx.ipn.escom.entidades.Clase;
+import mx.ipn.escom.repositorios.ClaseRepositorio;
+import mx.ipn.escom.servicios.ClaseServicio;
 import static mx.ipn.escom.servicios.util.MensajesCrud.ADD_CORRECT;
 import static mx.ipn.escom.servicios.util.MensajesCrud.DELETE_CORRECT;
 import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_HIBERNATE;
@@ -23,52 +23,52 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class CasaServicioImpl implements CasaServicio{
+public class ClaseServicioImpl implements ClaseServicio{
     
     @Autowired
-    CasaRepositorio casaRepositorio;
-    private static final String CASA = "un casa.#";
+    ClaseRepositorio claseRepositorio;
+    private static final String CLASE = "un clase.#";
     
      @Override
-    public String agregar(Casa casa) {
-        if (casaRepositorio.agregar(casa)) {
-            return ADD_CORRECT + CASA;
+    public String agregar(Clase clase) {
+        if (claseRepositorio.agregar(clase)) {
+            return ADD_CORRECT + CLASE;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public String actualizar(Casa casa) {
-        if (casaRepositorio.actualizar(casa)) {
-            return UPDATE_CORRECT + CASA;
+    public String actualizar(Clase clase) {
+        if (claseRepositorio.actualizar(clase)) {
+            return UPDATE_CORRECT + CLASE;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public String eliminar(Casa casa) {
-        if (casaRepositorio.eliminar(casa)) {
-            return DELETE_CORRECT + CASA;
+    public String eliminar(Clase clase) {
+        if (claseRepositorio.eliminar(clase)) {
+            return DELETE_CORRECT + CLASE;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public List<Casa> buscarTodos() {
-        return casaRepositorio.buscarTodos();
+    public List<Clase> buscarTodos() {
+        return claseRepositorio.buscarTodos();
     }
 
     @Override
     public String eliminar(Integer id) {
-       Casa casa = casaRepositorio.buscarPorId(id);
-       if (casaRepositorio.eliminar(casa)) {
-            return DELETE_CORRECT + CASA;
+       Clase clase = claseRepositorio.buscarPorId(id);
+       if (claseRepositorio.eliminar(clase)) {
+            return DELETE_CORRECT + CLASE;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public Casa buscarPorId(Integer id) {
-       return casaRepositorio.buscarPorId(id);
+    public Clase buscarPorId(Integer id) {
+       return claseRepositorio.buscarPorId(id);
     }
 }

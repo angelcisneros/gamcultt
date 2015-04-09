@@ -60,7 +60,7 @@ public class EncargadoServicioImpl implements EncargadoServicio{
 
     @Override
     public String eliminar(Integer id) {
-       Encargado encargado = encargadoRepositorio.busacarPorId(id);
+       Encargado encargado = encargadoRepositorio.buscarPorId(id);
        if (encargadoRepositorio.eliminar(encargado)) {
             return DELETE_CORRECT + ENCARGADO;
         }
@@ -69,6 +69,6 @@ public class EncargadoServicioImpl implements EncargadoServicio{
 
     @Override
     public Encargado buscarPorId(Integer id) {
-       return encargadoRepositorio.busacarPorId(id);
+       return encargadoRepositorio.buscarPorId(id);
     }
 }

@@ -60,7 +60,7 @@ public class GaleriaEventoServicioImpl implements GaleriaEventoServicio{
 
     @Override
     public String eliminar(Integer id) {
-       GaleriaEvento galeriaEvento = galeriaEventoRepositorio.busacarPorId(id);
+       GaleriaEvento galeriaEvento = galeriaEventoRepositorio.buscarPorId(id);
        if (galeriaEventoRepositorio.eliminar(galeriaEvento)) {
             return DELETE_CORRECT + GALERIAEVENTO;
         }
@@ -69,6 +69,6 @@ public class GaleriaEventoServicioImpl implements GaleriaEventoServicio{
 
     @Override
     public GaleriaEvento buscarPorId(Integer id) {
-       return galeriaEventoRepositorio.busacarPorId(id);
+       return galeriaEventoRepositorio.buscarPorId(id);
     }
 }

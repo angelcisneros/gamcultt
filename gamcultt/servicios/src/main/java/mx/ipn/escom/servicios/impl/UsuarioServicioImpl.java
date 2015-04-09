@@ -6,9 +6,9 @@
 package mx.ipn.escom.servicios.impl;
 
 import java.util.List;
-import mx.ipn.escom.entidades.Casa;
-import mx.ipn.escom.repositorios.CasaRepositorio;
-import mx.ipn.escom.servicios.CasaServicio;
+import mx.ipn.escom.entidades.Usuario;
+import mx.ipn.escom.repositorios.UsuarioRepositorio;
+import mx.ipn.escom.servicios.UsuarioServicio;
 import static mx.ipn.escom.servicios.util.MensajesCrud.ADD_CORRECT;
 import static mx.ipn.escom.servicios.util.MensajesCrud.DELETE_CORRECT;
 import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_HIBERNATE;
@@ -23,52 +23,52 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class CasaServicioImpl implements CasaServicio{
+public class UsuarioServicioImpl implements UsuarioServicio{
     
     @Autowired
-    CasaRepositorio casaRepositorio;
-    private static final String CASA = "un casa.#";
+    UsuarioRepositorio usuarioRepositorio;
+    private static final String USUARIO = "un usuario.#";
     
      @Override
-    public String agregar(Casa casa) {
-        if (casaRepositorio.agregar(casa)) {
-            return ADD_CORRECT + CASA;
+    public String agregar(Usuario usuario) {
+        if (usuarioRepositorio.agregar(usuario)) {
+            return ADD_CORRECT + USUARIO;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public String actualizar(Casa casa) {
-        if (casaRepositorio.actualizar(casa)) {
-            return UPDATE_CORRECT + CASA;
+    public String actualizar(Usuario usuario) {
+        if (usuarioRepositorio.actualizar(usuario)) {
+            return UPDATE_CORRECT + USUARIO;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public String eliminar(Casa casa) {
-        if (casaRepositorio.eliminar(casa)) {
-            return DELETE_CORRECT + CASA;
+    public String eliminar(Usuario usuario) {
+        if (usuarioRepositorio.eliminar(usuario)) {
+            return DELETE_CORRECT + USUARIO;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public List<Casa> buscarTodos() {
-        return casaRepositorio.buscarTodos();
+    public List<Usuario> buscarTodos() {
+        return usuarioRepositorio.buscarTodos();
     }
 
     @Override
     public String eliminar(Integer id) {
-       Casa casa = casaRepositorio.buscarPorId(id);
-       if (casaRepositorio.eliminar(casa)) {
-            return DELETE_CORRECT + CASA;
+       Usuario usuario = usuarioRepositorio.buscarPorId(id);
+       if (usuarioRepositorio.eliminar(usuario)) {
+            return DELETE_CORRECT + USUARIO;
         }
         return ERROR_HIBERNATE;
     }
 
     @Override
-    public Casa buscarPorId(Integer id) {
-       return casaRepositorio.buscarPorId(id);
+    public Usuario buscarPorId(Integer id) {
+       return usuarioRepositorio.buscarPorId(id);
     }
 }

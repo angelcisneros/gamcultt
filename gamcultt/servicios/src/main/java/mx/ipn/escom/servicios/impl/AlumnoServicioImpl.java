@@ -60,7 +60,7 @@ public class AlumnoServicioImpl implements AlumnoServicio{
 
     @Override
     public String eliminar(Integer id) {
-       Alumno alumno = alumnoRepositorio.busacarPorId(id);
+       Alumno alumno = alumnoRepositorio.buscarPorId(id);
        if (alumnoRepositorio.eliminar(alumno)) {
             return DELETE_CORRECT + ALUMNO;
         }
@@ -69,6 +69,6 @@ public class AlumnoServicioImpl implements AlumnoServicio{
 
     @Override
     public Alumno buscarPorId(Integer id) {
-       return alumnoRepositorio.busacarPorId(id);
+       return alumnoRepositorio.buscarPorId(id);
     }
 }
