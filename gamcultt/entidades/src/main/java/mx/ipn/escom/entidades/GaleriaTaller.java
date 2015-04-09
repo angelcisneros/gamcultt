@@ -26,14 +26,15 @@ public class GaleriaTaller  implements java.io.Serializable {
     @Id @GeneratedValue(strategy=IDENTITY)    
     @Column(name="id", unique=true, nullable=false)  
      @Getter @Setter private Integer id;
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="taller", nullable=false)
      @Getter @Setter private Taller taller;
     @Column(name="nombre", nullable=false, length=45)
      @Getter @Setter private String nombre;
     @Column(name="extencion", nullable=false, length=5)
      @Getter @Setter private String extencion;
-    @Column(name="path", nullable=false, length=85)
-     @Getter @Setter private String path;
+    @Column(name="ruta", nullable=false, length=85)
+     @Getter @Setter private String ruta;
 
     public GaleriaTaller() {
     }
@@ -42,7 +43,7 @@ public class GaleriaTaller  implements java.io.Serializable {
        this.taller = taller;
        this.nombre = nombre;
        this.extencion = extencion;
-       this.path = path;
+       this.ruta = path;
     }
 }
 

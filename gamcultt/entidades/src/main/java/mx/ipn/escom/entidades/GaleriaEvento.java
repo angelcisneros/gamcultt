@@ -39,8 +39,8 @@ public class GaleriaEvento implements java.io.Serializable {
     @Column(name = "extencion", nullable = false, length = 5)
     @Getter @Setter private String extencion;
 
-    @Column(name = "path", nullable = false, length = 85)
-    @Getter @Setter private String path;
+    @Column(name = "ruta", nullable = false, length = 85)
+    @Getter @Setter private String ruta;
 
     public GaleriaEvento() {
     }
@@ -49,7 +49,7 @@ public class GaleriaEvento implements java.io.Serializable {
         this.evento = evento;
         this.nombre = nombre;
         this.extencion = extencion;
-        this.path = path;
+        this.ruta = path;
     }
 
 }

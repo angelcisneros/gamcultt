@@ -44,11 +44,11 @@ public class GaleriaCasa implements java.io.Serializable {
     @Setter
     private String extencion;
 
-    @Column(name = "path", nullable = false, length = 85)
+    @Column(name = "ruta", nullable = false, length = 85)
     @Getter
     @Setter
     
-    private String path;
+    private String ruta;
 
     public GaleriaCasa() {
     }
@@ -57,7 +57,7 @@ public class GaleriaCasa implements java.io.Serializable {
         this.casa = casa;
         this.nombre = nombre;
         this.extencion = extencion;
-        this.path = path;
+        this.ruta = path;
     }
 
 }
