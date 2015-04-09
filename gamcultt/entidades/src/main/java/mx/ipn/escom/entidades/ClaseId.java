@@ -1,5 +1,5 @@
 package mx.ipn.escom.entidades;
-// Generated 8/04/2015 05:34:35 PM by Hibernate Tools 4.3.1
+// Generated 9/04/2015 01:23:35 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;

@@ -2,18 +2,19 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="gamcultt"/>
-  <table-filter match-name="sala"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="clase"/>
   <table-filter match-name="galeria_casa"/>
-  <table-filter match-name="profesor"/>
-  <table-filter match-name="casa"/>
-  <table-filter match-name="alumno_clase"/>
-  <table-filter match-name="alumno"/>
-  <table-filter match-name="encargado"/>
   <table-filter match-name="propuesta"/>
-  <table-filter match-name="taller"/>
+  <table-filter match-name="sala"/>
   <table-filter match-name="galeria_taller"/>
-  <table-filter match-name="evento"/>
+  <table-filter match-name="clase"/>
   <table-filter match-name="galeria_evento"/>
+  <table-filter match-name="alumno_clase"/>
+  <table-filter match-name="encargado"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="casa"/>
+  <table-filter match-name="profesor"/>
+  <table-filter match-name="taller"/>
+  <table-filter match-name="evento"/>
+  <table-filter match-name="casa_has_taller"/>
+  <table-filter match-name="alumno"/>
 </hibernate-reverse-engineering>

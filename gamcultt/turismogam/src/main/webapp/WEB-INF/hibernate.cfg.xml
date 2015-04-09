@@ -4,22 +4,26 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gamcultt?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gamcultt</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping class="mx.ipn.escom.entidades.Encargado"/>
-    <mapping class="mx.ipn.escom.entidades.GaleriaCasa"/>
-    <mapping class="mx.ipn.escom.entidades.Usuario"/>
     <mapping class="mx.ipn.escom.entidades.Alumno"/>
-    <mapping class="mx.ipn.escom.entidades.Taller"/>
-    <mapping class="mx.ipn.escom.entidades.Clase"/>
-    <mapping class="mx.ipn.escom.entidades.Casa"/>
-    <mapping class="mx.ipn.escom.entidades.Propuesta"/>
-    <mapping class="mx.ipn.escom.entidades.Profesor"/>
-    <mapping class="mx.ipn.escom.entidades.GaleriaTaller"/>
+    <mapping class="mx.ipn.escom.entidades.GaleriaCasa"/>
+    <mapping class="mx.ipn.escom.entidades.Encargado"/>
+    <mapping class="mx.ipn.escom.entidades.CasaHasTallerId"/>
     <mapping class="mx.ipn.escom.entidades.Sala"/>
-    <mapping class="mx.ipn.escom.entidades.ClaseId"/>
+    <mapping class="mx.ipn.escom.entidades.AlumnoClase"/>
+    <mapping class="mx.ipn.escom.entidades.Clase"/>
+    <mapping class="mx.ipn.escom.entidades.Usuario"/>
+    <mapping class="mx.ipn.escom.entidades.Profesor"/>
+    <mapping class="mx.ipn.escom.entidades.Propuesta"/>
     <mapping class="mx.ipn.escom.entidades.GaleriaEvento"/>
     <mapping class="mx.ipn.escom.entidades.Evento"/>
+    <mapping class="mx.ipn.escom.entidades.CasaHasTaller"/>
+    <mapping class="mx.ipn.escom.entidades.Taller"/>
+    <mapping class="mx.ipn.escom.entidades.ClaseId"/>
+    <mapping class="mx.ipn.escom.entidades.AlumnoClaseId"/>
+    <mapping class="mx.ipn.escom.entidades.GaleriaTaller"/>
+    <mapping class="mx.ipn.escom.entidades.Casa"/>
   </session-factory>
 </hibernate-configuration>
