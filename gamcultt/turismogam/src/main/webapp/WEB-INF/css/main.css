@@ -175,3 +175,11 @@ ul#foot{
 .mischeckbox{
     padding-left: 30px;
 }*/
+
+.amarillo{
+    background-color: #AA2024;
+    color: #fff;
+}
+.ocultar{
+    visibility: hidden;
+}

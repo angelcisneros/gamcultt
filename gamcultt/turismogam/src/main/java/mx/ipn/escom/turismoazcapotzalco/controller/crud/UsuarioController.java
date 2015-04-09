@@ -13,6 +13,7 @@ import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_DATOS;
 import static mx.ipn.escom.servicios.util.MensajesCrud.SESION_CADUCA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,15 @@ public class UsuarioController {
 
     @Autowired
     UsuarioServicio usuarioServicio;
+    
+    @RequestMapping(value = "alumnos", method = RequestMethod.GET)
+    public String alumnos(Model model, HttpSession session) {
+//        Usuario usuario = (Usuario) session.getAttribute("usuario");       
+//        if(usuario == null){
+//            return "templates/index";
+//        }
+        return "crud/alumno";
+    }
 
     @ResponseBody
     @RequestMapping(value = "agregarUsuario", method = RequestMethod.POST)

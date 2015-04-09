@@ -19,7 +19,8 @@
         <link rel="stylesheet" type="text/css" href="css/animate.css">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
         <link href="css/sticky-footer.css" rel="stylesheet">
-
+        
+        <script src="js/jquery-1.11.2.min.js"></script>
         <title>Contratos Digitales</title>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
