@@ -13,6 +13,7 @@ import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_DATOS;
 import static mx.ipn.escom.servicios.util.MensajesCrud.SESION_CADUCA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +31,17 @@ public class ProfesorController {
     @Autowired
     ProfesorServicio profesorServicio;
 
+     @RequestMapping(value = "profesors", method = RequestMethod.GET)
+    public String alumnos(Model model, HttpSession session) {
+        model.addAttribute("profesors", profesorServicio.buscarTodos());
+        return "crud/profesor";
+    }
     @ResponseBody
     @RequestMapping(value = "agregarProfesor", method = RequestMethod.POST)
-    public String agregarProfesor(@Valid @ModelAttribute("profesor") Profesor profesor, MultipartFile formato, BindingResult bindingResult, HttpSession session) {
-        if (session.getAttribute("usuario") == null){
-            return SESION_CADUCA;
-        }
+    public String agregarProfesor(@Valid @ModelAttribute("profesor") Profesor profesor, BindingResult bindingResult, HttpSession session) {
+//        if (session.getAttribute("usuario") == null){
+//            return SESION_CADUCA;
+//        }
         if (bindingResult.hasErrors()) {
             return ERROR_DATOS;
         }
