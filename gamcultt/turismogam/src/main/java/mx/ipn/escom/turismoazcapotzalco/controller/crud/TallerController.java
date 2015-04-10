@@ -13,6 +13,7 @@ import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_DATOS;
 import static mx.ipn.escom.servicios.util.MensajesCrud.SESION_CADUCA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,13 +30,19 @@ public class TallerController {
 
     @Autowired
     TallerServicio tallerServicio;
+    
+    @RequestMapping(value = "tallers", method = RequestMethod.GET)
+    public String alumnos(Model model, HttpSession session) {
+        model.addAttribute("tallers", tallerServicio.buscarTodos());
+        return "crud/taller";
+    }
 
     @ResponseBody
     @RequestMapping(value = "agregarTaller", method = RequestMethod.POST)
-    public String agregarTaller(@Valid @ModelAttribute("taller") Taller taller, MultipartFile formato, BindingResult bindingResult, HttpSession session) {
-        if (session.getAttribute("usuario") == null){
-            return SESION_CADUCA;
-        }
+    public String agregarTaller(@Valid @ModelAttribute("taller") Taller taller,  BindingResult bindingResult, HttpSession session) {
+//        if (session.getAttribute("usuario") == null){
+//            return SESION_CADUCA;
+//        }
         if (bindingResult.hasErrors()) {
             return ERROR_DATOS;
         }
