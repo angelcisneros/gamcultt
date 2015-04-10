@@ -183,3 +183,6 @@ ul#foot{
 .ocultar{
     visibility: hidden;
 }
+body{
+    padding-top: 70px;
+}

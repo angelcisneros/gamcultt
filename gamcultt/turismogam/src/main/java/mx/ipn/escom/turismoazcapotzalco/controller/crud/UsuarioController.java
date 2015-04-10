@@ -31,14 +31,6 @@ public class UsuarioController {
     @Autowired
     UsuarioServicio usuarioServicio;
     
-    @RequestMapping(value = "alumnos", method = RequestMethod.GET)
-    public String alumnos(Model model, HttpSession session) {
-//        Usuario usuario = (Usuario) session.getAttribute("usuario");       
-//        if(usuario == null){
-//            return "templates/index";
-//        }
-        return "crud/alumno";
-    }
 
     @ResponseBody
     @RequestMapping(value = "agregarUsuario", method = RequestMethod.POST)

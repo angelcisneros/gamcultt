@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/pages/templates/head.jsp"%>
 <%@ include file="/WEB-INF/pages/templates/navbar.jsp"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="contenido" class="container-fluid">
     <div class="row">
         <div class="col-lg-1"></div>
@@ -24,36 +24,26 @@
                     <thead id="alumnoThead" class="text-center">
                         <tr>
                             <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Empresa</th>
-                            <th>Télefono</th>
-                            <th>Dirección</th>
+                            <th>Edad</th>
+                            <th>Nombre Tutor</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     
                     <tbody id="alumnoTbody">
-                        <c:forEach items="${alumnos}" var="c" varStatus="status">
+                        <c:forEach items="${alumnos}" var="a" varStatus="status">
                             <tr valign="top">
                                 <td class="id">
-                                    <label class="grado">${c.grado.nombre}</label>&#32;
-                                    <label class="nombre">${c.nombre}</label>&#32;
-                                    <label class="paterno">${c.paterno}</label>&#32;
-                                    <label class="materno">${c.materno}</label>
-                                    <label id="${c.id}" class="ocultar">${c.id}</label>
+                                    <label class="nombre">${a.nombre}</label>&#32;
+                                    <label class="paterno">${a.paterno}</label>&#32;
+                                    <label class="materno">${a.materno}</label>
+                                    <label id="${a.id}" class="ocultar">${a.id}</label>
                                 </td>
                                 <td>
-                                    <label>${c.mail}</label>
+                                    <label>${a.edad}</label>
                                 </td>
                                 <td>
-                                    <label>${c.empresa.razonSocial}</label>
-                                </td>
-                                <td>
-                                    <label class="telefono1">${c.telefono1}</label> y
-                                    <label class="telefono2">${c.telefono2}</label>
-                                </td>
-                                <td>
-                                    <label>${c.direccion}</label>
+                                    <label>${a.nombreTutor}</label>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="">
@@ -71,8 +61,7 @@
     </div>
 </div>
 
-
-<!-- POPUP AGREGAR EMPRESA -->
+<!-- POPUP AGREGAR ALUMNO -->
 <div class="modal fade" id="popUpAlumnoAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -93,34 +82,11 @@
                     <label>Apellido Materno:</label>
                     <input id="maternoAdd" name="materno" class="form-control" type="text" placeholder="Ingrese el Apellino Materno del Alumno">
                     <br>
-                    <label>Correo:</label>
-                    <input id="correoAdd" name="mail" class="form-control" type="email" placeholder="Ingrese el Correo">
+                    <label>Edad:</label>
+                    <input id="edadAdd" name="edad" class="form-control" type="email" placeholder="Ingrese el Edad">
                     <br>
-                    <label>Grado:</label>
-                    <select id="gradoAdd" name="grado.id" class="form-control">
-                        <option value="0" label="Seleccione...">Seleccione...</option>
-                        <c:forEach items="${grado}" var="g" varStatus="status">
-                            <option value="${g.id}" label="${g.nombre}">${g.nombre}</option>
-                        </c:forEach>
-                    </select>
-                    <br>
-                    <label>Empresa</label>
-                    <select id="empresaAdd" name="empresa.id" class="form-control">
-                        <option value="0" label="Seleccione...">Seleccione...</option>
-                        <c:forEach items="${empresa}" var="e" varStatus="status">
-                            <option value="${e.id}" label="${e.razonSocial}">${e.razonSocial}</option>
-                        </c:forEach>
-                    </select>
-                    <br>
-                    <label>Teléfono 1:</label>
-                    <input id="telefono1Add" name="telefono1" class="form-control" type="text" placeholder="Ingrese el Teléfono del Alumno">
-                    <br>
-                    <label>Teléfono 2:</label>
-                    <input id="telefono2Add" name="telefono2" class="form-control" type="text" placeholder="Ingrese el Teléfono del Alumno">
-                    <br>
-                    <label>Dirección</label>
-                    <textarea id="direccionAdd" name="direccion" class="form-control"></textarea>
-                    
+                    <label>Nombre Tutor:</label>
+                    <input id="nombreTutorAdd" name="nombreTutor" class="form-control" type="text" placeholder="Ingrese el Nombre del tutor">
                 </form>
             </div>
             <div class="modal-footer amarillo">
@@ -133,8 +99,7 @@
     <!-- /.modal-dialog -->
 </div>
 
-
-<!-- POPUP ACTUALIZAR EMPRESA -->
+<!-- POPUP ACTUALIZAR ALUMNO -->
 <div class="modal fade" id="popUpAlumnoUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -196,7 +161,7 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- POPUP ELIMINAR EMPRESA -->
+<!-- POPUP ELIMINAR ALUMNO -->
 <div class="modal fade" id="popUpAlumnoDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -234,6 +199,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
 <%@ include file="/WEB-INF/pages/templates/popUpRespuesta.jsp"%>
 <script src="js/alumno/alumno.js" charset="UTF-8"></script>
 <%@ include file="/WEB-INF/pages/templates/footer.jsp"%>

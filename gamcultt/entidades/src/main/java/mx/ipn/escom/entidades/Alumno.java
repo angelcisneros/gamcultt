@@ -103,7 +103,7 @@ public class Alumno  implements java.io.Serializable {
     }
 
     
-    @Column(name="nombre_tutor", length=45)
+    @Column(name="nombre_tutor", nullable = false, length=45)
     public String getNombreTutor() {
         return this.nombreTutor;
     }

@@ -35,18 +35,15 @@ $(document).on('ready', function() {
         var nombre = $('#nombreAdd').val();
         var paterno = $('#paternoAdd').val();
         var materno = $('#maternoAdd').val();
-        var empresa = $('#empresaAdd').val();
-        var mail = $('#correoAdd').val();
-        var grado = $('#gradoAdd').val();
-        var telefono1 = $('#telefono1Add').val();
-        var telefono2 = $('#telefono2Add').val();
-        var direccion = $('#direccionAdd').val();
+        var edad = $('#edadAdd').val();
+        var nombreTutor = $('#nombreTutorAdd').val();
 
         if (nombre === '') {
             muestraPopUpCampoNoVacio($('#nombreAdd'));
             $('#nombreAdd').css("border", "1px solid red");
         } else {
             $('#nombreAdd').removeAttr('style');
+            cierraPopUpChiquito($('#nombreAdd'));
             requisitos++;
         }
 
@@ -55,6 +52,7 @@ $(document).on('ready', function() {
             $('#paternoAdd').css("border", "1px solid red");
         } else {
             $('#paternoAdd').removeAttr('style');
+            cierraPopUpChiquito($('#paternoAdd'));
             requisitos++;
         }
         if (materno === '') {
@@ -62,53 +60,29 @@ $(document).on('ready', function() {
             $('#maternoAdd').css("border", "1px solid red");
         } else {
             $('#maternoAdd').removeAttr('style');
+            cierraPopUpChiquito($('#maternoAdd'));
             requisitos++;
         }
 
-        if (empresa === '0' || empresa === 0) {
-            muestraPopUpCampoNoVacio($('#empresaAdd'));
-            $('#empresaAdd').css("border", "1px solid red");
+        if($.isNumeric(edad)){
+            $('#edadAdd').removeAttr('style');
+            cierraPopUpChiquito($('#edadAdd'));
+            requisitos++;
+        }else{
+            $('#edadAdd').css("border", "1px solid red");
+            muestraPopUpCampoNumerico($('#edadAdd'));
+        }
+       
+        
+        if (nombreTutor === '') {
+            muestraPopUpCampoNoVacio($('#nombreTutorAdd'));
+            $('#nombreTutorAdd').css("border", "1px solid red");
         } else {
-            $('#empresaAdd').removeAttr('style');
+            $('#nombreTutorAdd').removeAttr('style');
+            cierraPopUpChiquito($('#nombreTutorAdd'));
             requisitos++;
         }
-
-        if (grado === '0' || grado === 0) {
-            muestraPopUpCampoNoVacio($('#gradoAdd'));
-            $('#gradoAdd').css("border", "1px solid red");
-        } else {
-            $('#gradoAdd').removeAttr('style');
-            requisitos++;
-        }
-        if (telefono1 === '') {
-            muestraPopUpCampoNoVacio($('#telefono1Add'));
-            $('#telefono1Add').css("border", "1px solid red");
-        } else {
-            $('#telefono1Add').removeAttr('style');
-            requisitos++;
-        }
-        if (mail === '') {
-            muestraPopUpCampoNoVacio($('#correoUpdate'));
-            $('#correoUpdate').css("border", "1px solid red");
-        } else {
-            $('#correoUpdate').removeAttr('style');
-            requisitos++;
-        }
-//        if (telefono2 === '') {
-//            muestraPopUpCampoNoVacio($('#telefono2Add'));
-//            $('#telefono2Add').css("border", "1px solid red");
-//        } else {
-//            $('#telefono2Add').removeAttr('style');
-//            requisitos++;
-//        }
-//        if (direccion === '') {
-//            muestraPopUpCampoNoVacio($('#direccionAdd'));
-//            $('#direccionAdd').css("border", "1px solid red");
-//        } else {
-//            $('#direccionAdd').removeAttr('style');
-//            requisitos++;
-//        }
-        if (requisitos === 7) {
+        if (requisitos === 5) {
 
             $.ajax({
                 type: 'POST',
@@ -124,36 +98,26 @@ $(document).on('ready', function() {
                         $('#popUpRespuesta').modal('show');
                         $('.nuevoAlumno').removeClass();
                         $("#alumnoTbody").prepend(
-                                '<tr valign="top" class="success nuevoAlumno">' +
-                                '<td class="id">' +
-                                '<label class="grado">' + $('#gradoAdd option:selected').text() + '</label>&#32;' +
-                                '<label class="nombre">' + nombre + '</label>&#32;' +
-                                '<label class="paterno">' + paterno + '</label>&#32;' +
-                                '<label class="materno">' + materno + '</label>' +
-                                '<label id="' + respuesta[2] + '" class="ocultar">' + respuesta[2] + '</label>' +
-                                '</td>' +
-                                '<td>' +
-                                    '<label>'+ mail +'</label>' +
-                                '</td>' +
-                                
-                                ' <td>' +
-                                '<label>' + $('#empresaAdd option:selected').text() + '</label>' +
-                                '</td>' +
-                                '<td>' +
-                                '<label class="telefono1">' + telefono1 + '</label> y ' +
-                                '<label class="telefono2">' + telefono2 + '</label>' +
-                                '</td>' +
-                                '<td>' +
-                                '<label>' + direccion + '</label>' +
-                                '</td>' +
-                                '<td>' +
-                                '<button class="btn btn-primary alumnoUpdateButton">Editar</button>' +
-                                '<button class="btn btn-danger alumnoDeleteButton">Eliminar</button>' +
-                                ' </td>' +
-                                '</tr>'
-
-
-
+                                '<tr valign="top" class="nuevoAlumno success">'+
+                                '<td class="id">'+
+                                    '<label class="nombre">' + nombre + '</label>&#32;'+
+                                    '<label class="paterno">' + paterno + '</label>&#32;'+
+                                    '<label class="materno">' + materno + '</label>'+
+                                    '<label id="' + respuesta[2] + '" class="ocultar">' + respuesta[2] + '</label>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<label>' + edad + '</label>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<label>' + nombreTutor + '</label>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<div class="btn-group" role="group" aria-label="">'+
+                                    '<button class="btn btn-primary alumnoUpdateButton">Editar</button>'+
+                                    '<button class="btn btn-danger alumnoDeleteButton">Eliminar</button>'+
+                                    '</div>'+
+                                '</td>'+
+                            '</tr>'
 
                                 );
 
