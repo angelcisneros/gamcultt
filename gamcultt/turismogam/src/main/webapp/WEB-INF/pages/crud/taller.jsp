@@ -77,17 +77,15 @@
             <div class="modal-body">
                 <form id="tallerAddForm">
                     <label>Categoria:</label>
-                    <input id="categoriaAdd" name="categoria" class="form-control" type="text" placeholder="Ingrese el nombre del Taller">
+                    <input id="categoriaAdd" name="categoria" class="form-control" type="text" placeholder="Ingrese la categoria">
                     <br>
                     <label>Nombre:</label>
-                    <input id="nombreAdd" name="nombre" class="form-control" type="text" placeholder="Ingrese el Apellido Paterno del Taller">
+                    <input id="nombreAdd" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre del Taller">
                     <br>
                     <label>Descripcion:</label>
                     <input id="descripcionAdd" name="descripcion" class="form-control" type="text" placeholder="Ingrese el Apellino Materno del Taller">
                     <br>
-                    <label>Opciones:</label>
-                    <input id="opcionesAdd" name="opciones" class="form-control" type="email" placeholder="Ingrese el Edad">
-                    <br>
+                    
                     
                 </form>
             </div>
