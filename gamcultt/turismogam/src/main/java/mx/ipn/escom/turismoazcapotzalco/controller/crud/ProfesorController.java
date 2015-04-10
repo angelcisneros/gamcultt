@@ -69,3 +69,8 @@ public class ProfesorController {
         return profesorServicio.eliminar(profesor);
     }
 }
+
+
+
+
+

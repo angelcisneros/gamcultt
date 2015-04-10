@@ -72,3 +72,8 @@ public class ProfesorServicioImpl implements ProfesorServicio{
        return profesorRepositorio.buscarPorId(id);
     }
 }
+
+
+
+
+
