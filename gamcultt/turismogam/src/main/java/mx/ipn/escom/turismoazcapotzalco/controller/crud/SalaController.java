@@ -8,11 +8,13 @@ package mx.ipn.escom.turismoazcapotzalco.controller.crud;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import mx.ipn.escom.entidades.Sala;
+import mx.ipn.escom.servicios.CasaServicio;
 import mx.ipn.escom.servicios.SalaServicio;
 import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_DATOS;
 import static mx.ipn.escom.servicios.util.MensajesCrud.SESION_CADUCA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +31,21 @@ public class SalaController {
 
     @Autowired
     SalaServicio salaServicio;
+    @Autowired
+    CasaServicio casaServicio;
+    
+      @RequestMapping(value = "casas", method = RequestMethod.GET)
+    public String alumnos(Model model, HttpSession session) {
+        model.addAttribute("casas", casaServicio.buscarTodos());
+        return "crud/casa";
+    }
+    
+            
 
     @ResponseBody
     @RequestMapping(value = "agregarSala", method = RequestMethod.POST)
-    public String agregarSala(@Valid @ModelAttribute("sala") Sala sala, MultipartFile formato, BindingResult bindingResult, HttpSession session) {
+    public String agregarSala(@Valid @ModelAttribute("sala") Sala sala, BindingResult bindingResult, HttpSession session) {
+       
         if (session.getAttribute("usuario") == null){
             return SESION_CADUCA;
         }

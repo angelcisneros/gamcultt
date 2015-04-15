@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 ">
-            <h2><strong>Clases</strong></h2>
+            <h2><strong>Salas</strong></h2>
         </div>
     </div>
     <hr />
      <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 form-inline">
-            <a id="addClaseButton" class="btn btn-primary btn-lg" role="button">Agregar Nuevo Clase +</a>
+            <a id="addSalaButton" class="btn btn-primary btn-lg" role="button">Agregar Nuevo Sala +</a>
         </div>
     </div>
     <hr />
@@ -20,47 +20,34 @@
         <div class="col-md-1 col-lg-1"></div>
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
             <div class="row table-responsive">
-                <table id="claseTable" class="table table-striped table-bordered table-hover">
-                    <thead id="claseThead" class="text-center">
+                <table id="salaTable" class="table table-striped table-bordered table-hover">
+                    <thead id="salaThead" class="text-center">
                         <tr>
-                            <th>Profesor</th>
-                            <th>Sala</th>
-                            <th>Taller</th>
-                            <th>Costo</th>
-                            <th>Horario</th>
-                            <th>Status</th>
+                            <th>Casa</th>
+                            <th>Nombre Tutor</th>
+                            <th>Capacidad</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     
-                    <tbody id="claseTbody">
-                        <c:forEach items="${clases}" var="c" varStatus="status">
+                    <tbody id="salaTbody">
+                        <c:forEach items="${salas}" var="s" varStatus="status">
                             <tr valign="top">
                                 <td class="id">
-                                    <label class="nombreProfesor">${c.profesor.nombre}</label>&#32;
-                                    <label class="paternoProfesor">${c.profesor.paterno}</label>&#32;
-                                    <label class="maternoProfesor">${c.profesor.materno}</label>
-                                    <label id="${c.profesor.id}" class="ocultar">${c.profesor.id}</label>
+                                    <label class="nombre">${s.casa.nombre}</label>&#32;
+                                    
+                                    <label id="${s.id}" class="ocultar">${s.id}</label>
                                 </td>
                                 <td>
-                                    <label>${c.sala.nombre}</label>
+                                    <label>${s.nombre}</label>
                                 </td>
                                 <td>
-                                    <label>${c.taller.nombre}</label>
-                                </td>
-                                <td>
-                                    <label>${c.costo}</label>
-                                </td>
-                                 <td>
-                                    <label>${c.horario}</label>
-                                </td>
-                                <td>
-                                    <label>${c.status}</label>
+                                    <label>${s.capacidad}</label>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="">
-                                    <button class="btn btn-primary claseUpdateButton">Editar</button>
-                                    <button class="btn btn-danger claseDeleteButton">Eliminar</button>
+                                    <button class="btn btn-primary salaUpdateButton">Editar</button>
+                                    <button class="btn btn-danger salaDeleteButton">Eliminar</button>
                                     </div>
                                 </td>
                             </tr>
@@ -74,54 +61,36 @@
 </div>
 
 <!-- POPUP AGREGAR ALUMNO -->
-<div class="modal fade" id="popUpClaseAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="popUpSalaAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header amarillo">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title"><strong>Agregar Nueva Clase</strong></h4>
+                <h4 class="modal-title"><strong>Agregar Nueva Sala</strong></h4>
             </div>
             <div class="modal-body">
-                <form id="claseAddForm">
-                    <label>Profesor:</label>
-                        <select id="profesorAdd" name="profesor.id" class="form-control">
+                <form id="salaAddForm">
+                    <label>Casa:</label>
+                        <select id="casaAdd" name="casa.id" class="form-control">
                             <option value="0" label="Seleccione...">Seleccione...</option>
-                            <c:forEach items="${profesores}" var="p" varStatus="status">
-                                <option value="${p.id}" label="${p.nombre} ${p.paterno} ${p.materno}">${p.nombre} ${p.paterno} ${p.materno}</option>
+                            <c:forEach items="${casas}" var="p" varStatus="status">
+                                 <option value="${c.id}" label="${c.nombre}">${c.nombre}</option>
                             </c:forEach>
                         </select>
                     <br>
-                    <label>Sala:</label>
-                        <select id="salaAdd" name="sala.id" class="form-control">
-                            <option value="0" label="Seleccione...">Seleccione...</option>
-                            <c:forEach items="${salas}" var="s" varStatus="status">
-                                <option value="${s.id}" label="${s.nombre}">${s.nombre}</option>
-                            </c:forEach>
-                        </select>
+                    <label>Nombre:</label>
+                    <input id="nombreAdd" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre de la Sala">
                     <br>
-                    <label>Taller:</label>
-                        <select id="tallerAdd" name="taller.id" class="form-control">
-                            <option value="0" label="Seleccione...">Seleccione...</option>
-                            <c:forEach items="${talleres}" var="t" varStatus="status">
-                                <option value="${t.id}" label="${t.nombre}">${t.nombre}</option>
-                            </c:forEach>
-                        </select>
-                    <br>
-                    <label>Costo:</label>
-                    <input id="costoAdd" name="costo" class="form-control" type="number" placeholder="Ingrese el costo del taller">
-                    <br>
-                    <label>Horario:</label>
-                    <input id="horarioAdd" name="horario" class="form-control" type="text" placeholder="Ingrese el horario">
-                    <br>
-                    <label>Status:</label>
-                    <input id="statusAdd" name="status" class="form-control" type="text" placeholder="Ingrese el status">
+                    <label>Capacidad:</label>
+                    <input id="capacidadAdd" name="capacidad" class="form-control" type="text" placeholder="Ingrese la capacidad de Sala">
+                    
                 </form>
             </div>
             <div class="modal-footer amarillo">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button id="addClase" type="button" class="btn btn-primary">Agregar</button>
+                <button id="addSala" type="button" class="btn btn-primary">Agregar</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -130,25 +99,25 @@
 </div>
 
 <!-- POPUP ACTUALIZAR ALUMNO -->
-<div class="modal fade" id="popUpClaseUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="popUpSalaUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header amarillo">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title"><strong>Actualizar Clase</strong></h4>
+                <h4 class="modal-title"><strong>Actualizar Sala</strong></h4>
             </div>
             <div class="modal-body">
-                <form id="claseUpdateForm">
+                <form id="salaUpdateForm">
                     <label>Nombre(s):</label>
-                    <input id="nombreUpdate" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre del Clase">
+                    <input id="nombreUpdate" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre del Sala">
                     <br>
                     <label>Apellido Paterno:</label>
-                    <input id="paternoUpdate" name="paterno" class="form-control" type="text" placeholder="Ingrese el Apellido Paterno del Clase">
+                    <input id="paternoUpdate" name="paterno" class="form-control" type="text" placeholder="Ingrese el Apellido Paterno del Sala">
                     <br>
                     <label>Apellido Materno:</label>
-                    <input id="maternoUpdate" name="materno" class="form-control" type="text" placeholder="Ingrese el Apellino Materno del Clase">
+                    <input id="maternoUpdate" name="materno" class="form-control" type="text" placeholder="Ingrese el Apellino Materno del Sala">
                     <br>
                     <label>Correo:</label>
                     <input id="correoUpdate" name="mail" class="form-control" type="email" placeholder="Ingrese el Correo">
@@ -170,10 +139,10 @@
                     </select>
                     <br>
                     <label>Teléfono 1:</label>
-                    <input id="telefono1Update" name="telefono1" class="form-control" type="text" placeholder="Ingrese el Teléfono del Clase">
+                    <input id="telefono1Update" name="telefono1" class="form-control" type="text" placeholder="Ingrese el Teléfono del Sala">
                     <br>
                     <label>Teléfono 2:</label>
-                    <input id="telefono2Update" name="telefono2" class="form-control" type="text" placeholder="Ingrese el Teléfono del Clase">
+                    <input id="telefono2Update" name="telefono2" class="form-control" type="text" placeholder="Ingrese el Teléfono del Sala">
                     <br>
                     <label>Dirección</label>
                     <textarea id="direccionUpdate" name="direccion" class="form-control"></textarea>
@@ -183,7 +152,7 @@
             </div>
             <div class="modal-footer amarillo">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button id="updateClase" type="button" class="btn btn-primary">Actualizar</button>
+                <button id="updateSala" type="button" class="btn btn-primary">Actualizar</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -192,17 +161,17 @@
 </div>
 
 <!-- POPUP ELIMINAR ALUMNO -->
-<div class="modal fade" id="popUpClaseDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="popUpSalaDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header amarillo">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title"><strong>Eliminar Clase</strong></h4>
+                <h4 class="modal-title"><strong>Eliminar Sala</strong></h4>
             </div>
             <div class="modal-body">
-                <form id="claseDeleteForm">
+                <form id="salaDeleteForm">
                     <strong><label>Nombre:</label></strong>
                     <label id="nombreDelete"></label>
                     <br>
@@ -217,12 +186,12 @@
                     <br>
                     <strong><label>Dirección:</label></strong>
                     <label id="direccionDelete"></label>
-                    <input id="idDelete" name="id" class="form-control ocultar" type="text" placeholder="Ingrese el nombre del Clase">
+                    <input id="idDelete" name="id" class="form-control ocultar" type="text" placeholder="Ingrese el nombre del Sala">
                 </form>
             </div>
             <div class="modal-footer amarillo">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button id="deleteClase" type="button" class="btn btn-primary">Eliminar</button>
+                <button id="deleteSala" type="button" class="btn btn-primary">Eliminar</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -231,5 +200,5 @@
 </div>
 
 <%@ include file="/WEB-INF/pages/templates/popUpRespuesta.jsp"%>
-<script src="js/clase/clase.js" charset="UTF-8"></script>
+<script src="js/sala/sala.js" charset="UTF-8"></script>
 <%@ include file="/WEB-INF/pages/templates/footer.jsp"%>
