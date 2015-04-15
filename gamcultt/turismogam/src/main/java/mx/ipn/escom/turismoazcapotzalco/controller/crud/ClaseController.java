@@ -9,10 +9,14 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import mx.ipn.escom.entidades.Clase;
 import mx.ipn.escom.servicios.ClaseServicio;
+import mx.ipn.escom.servicios.ProfesorServicio;
+import mx.ipn.escom.servicios.SalaServicio;
+import mx.ipn.escom.servicios.TallerServicio;
 import static mx.ipn.escom.servicios.util.MensajesCrud.ERROR_DATOS;
 import static mx.ipn.escom.servicios.util.MensajesCrud.SESION_CADUCA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,23 @@ public class ClaseController {
 
     @Autowired
     ClaseServicio claseServicio;
+    
+    @Autowired
+    ProfesorServicio profesorServicio;
+    @Autowired
+    SalaServicio salaServicio;
+    @Autowired
+    TallerServicio tallerServicio;
+    
+    @RequestMapping(value = "clases", method = RequestMethod.GET)
+    public String clases(Model model, HttpSession session) {
+        model.addAttribute("clases", claseServicio.buscarTodos());
+        model.addAttribute("profesores", profesorServicio.buscarTodos());
+        model.addAttribute("salas", salaServicio.buscarTodos());
+        model.addAttribute("talleres", tallerServicio.buscarTodos());
+        
+        return "crud/clase";
+    }
 
     @ResponseBody
     @RequestMapping(value = "agregarClase", method = RequestMethod.POST)
