@@ -31,24 +31,23 @@ public class SalaController {
 
     @Autowired
     SalaServicio salaServicio;
+    
     @Autowired
     CasaServicio casaServicio;
-    
-      @RequestMapping(value = "casas", method = RequestMethod.GET)
-    public String alumnos(Model model, HttpSession session) {
+
+    @RequestMapping(value = "salas", method = RequestMethod.GET)
+    public String salas(Model model, HttpSession session) {
+        model.addAttribute("salas", salaServicio.buscarTodos());
         model.addAttribute("casas", casaServicio.buscarTodos());
-        return "crud/casa";
+        return "crud/sala";
     }
     
-            
-
     @ResponseBody
     @RequestMapping(value = "agregarSala", method = RequestMethod.POST)
-    public String agregarSala(@Valid @ModelAttribute("sala") Sala sala, BindingResult bindingResult, HttpSession session) {
-       
-        if (session.getAttribute("usuario") == null){
-            return SESION_CADUCA;
-        }
+    public String agregarSala(@Valid @ModelAttribute("sala") Sala sala, MultipartFile formato, BindingResult bindingResult, HttpSession session) {
+//        if (session.getAttribute("usuario") == null){
+//            return SESION_CADUCA;
+//        }
         if (bindingResult.hasErrors()) {
             return ERROR_DATOS;
         }
@@ -58,9 +57,9 @@ public class SalaController {
     @ResponseBody
     @RequestMapping(value = "editarSala", method = RequestMethod.POST)
     public String editarSala(@Valid @ModelAttribute("sala") Sala sala, BindingResult bindingResult, HttpSession session) {
-        if (session.getAttribute("usuario") == null){
-            return SESION_CADUCA;
-        }
+//        if (session.getAttribute("usuario") == null){
+//            return SESION_CADUCA;
+//        }
         if (bindingResult.hasErrors()) {
             return ERROR_DATOS;
         }
@@ -70,9 +69,9 @@ public class SalaController {
     @ResponseBody
     @RequestMapping(value = "eliminarSala", method = RequestMethod.POST)
     public String eliminarSala(Sala sala, BindingResult bindingResult, HttpSession session) {
-        if (session.getAttribute("usuario") == null){
-            return SESION_CADUCA;
-        }
+//        if (session.getAttribute("usuario") == null){
+//            return SESION_CADUCA;
+//        }
         return salaServicio.eliminar(sala);
     }
 }

@@ -9,7 +9,7 @@
         </div>
     </div>
     <hr />
-     <div class="row">
+    <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 form-inline">
             <a id="addSalaButton" class="btn btn-primary btn-lg" role="button">Agregar Nuevo Sala +</a>
@@ -23,31 +23,30 @@
                 <table id="salaTable" class="table table-striped table-bordered table-hover">
                     <thead id="salaThead" class="text-center">
                         <tr>
+                            <th>Nombre</th>
                             <th>Casa</th>
-                            <th>Nombre Tutor</th>
                             <th>Capacidad</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody id="salaTbody">
                         <c:forEach items="${salas}" var="s" varStatus="status">
                             <tr valign="top">
                                 <td class="id">
-                                    <label class="nombre">${s.casa.nombre}</label>&#32;
-                                    
+                                    <label>${s.nombre}</label>
                                     <label id="${s.id}" class="ocultar">${s.id}</label>
                                 </td>
                                 <td>
-                                    <label>${s.nombre}</label>
+                                    <label class="nombre">${s.casa.nombre}</label>
                                 </td>
                                 <td>
                                     <label>${s.capacidad}</label>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="">
-                                    <button class="btn btn-primary salaUpdateButton">Editar</button>
-                                    <button class="btn btn-danger salaDeleteButton">Eliminar</button>
+                                        <button class="btn btn-primary salaUpdateButton">Editar</button>
+                                        <button class="btn btn-danger salaDeleteButton">Eliminar</button>
                                     </div>
                                 </td>
                             </tr>
@@ -72,20 +71,19 @@
             </div>
             <div class="modal-body">
                 <form id="salaAddForm">
-                    <label>Casa:</label>
-                        <select id="casaAdd" name="casa.id" class="form-control">
-                            <option value="0" label="Seleccione...">Seleccione...</option>
-                            <c:forEach items="${casas}" var="p" varStatus="status">
-                                 <option value="${c.id}" label="${c.nombre}">${c.nombre}</option>
-                            </c:forEach>
-                        </select>
-                    <br>
                     <label>Nombre:</label>
                     <input id="nombreAdd" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre de la Sala">
                     <br>
+                    <label>Casa:</label>
+                    <select id="casaAdd" name="casa.id" class="form-control">
+                        <option value="0" label="Seleccione...">Seleccione...</option>
+                        <c:forEach items="${casas}" var="p" varStatus="status">
+                            <option value="${c.id}" label="${c.nombre}">${c.nombre}</option>
+                        </c:forEach>
+                    </select>
+                    <br>
                     <label>Capacidad:</label>
                     <input id="capacidadAdd" name="capacidad" class="form-control" type="text" placeholder="Ingrese la capacidad de Sala">
-                    
                 </form>
             </div>
             <div class="modal-footer amarillo">
@@ -110,43 +108,19 @@
             </div>
             <div class="modal-body">
                 <form id="salaUpdateForm">
-                    <label>Nombre(s):</label>
-                    <input id="nombreUpdate" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre del Sala">
+                    <label>Nombre:</label>
+                    <input id="nombreUpdate" name="nombre" class="form-control" type="text" placeholder="Ingrese el nombre de la Sala">
                     <br>
-                    <label>Apellido Paterno:</label>
-                    <input id="paternoUpdate" name="paterno" class="form-control" type="text" placeholder="Ingrese el Apellido Paterno del Sala">
-                    <br>
-                    <label>Apellido Materno:</label>
-                    <input id="maternoUpdate" name="materno" class="form-control" type="text" placeholder="Ingrese el Apellino Materno del Sala">
-                    <br>
-                    <label>Correo:</label>
-                    <input id="correoUpdate" name="mail" class="form-control" type="email" placeholder="Ingrese el Correo">
-                    <br>
-                    <label>Grado:</label>
-                    <select id="gradoUpdate" name="grado.id" class="form-control">
+                    <label>Casa:</label>
+                    <select id="casaUpdate" name="casa.id" class="form-control">
                         <option value="0" label="Seleccione...">Seleccione...</option>
-                        <c:forEach items="${grado}" var="g" varStatus="status">
-                            <option value="${g.id}" label="${g.nombre}">${g.nombre}</option>
+                        <c:forEach items="${casas}" var="p" varStatus="status">
+                            <option value="${c.id}" label="${c.nombre}">${c.nombre}</option>
                         </c:forEach>
                     </select>
                     <br>
-                    <label>Empresa</label>
-                    <select id="empresaUpdate" name="empresa.id" class="form-control">
-                        <option value="0" label="Seleccione...">Seleccione...</option>
-                        <c:forEach items="${empresa}" var="e" varStatus="status">
-                            <option value="${e.id}" label="${e.razonSocial}">${e.razonSocial}</option>
-                        </c:forEach>
-                    </select>
-                    <br>
-                    <label>Teléfono 1:</label>
-                    <input id="telefono1Update" name="telefono1" class="form-control" type="text" placeholder="Ingrese el Teléfono del Sala">
-                    <br>
-                    <label>Teléfono 2:</label>
-                    <input id="telefono2Update" name="telefono2" class="form-control" type="text" placeholder="Ingrese el Teléfono del Sala">
-                    <br>
-                    <label>Dirección</label>
-                    <textarea id="direccionUpdate" name="direccion" class="form-control"></textarea>
-                    
+                    <label>Capacidad:</label>
+                    <input id="capacidadUpdate" name="capacidad" class="form-control" type="text" placeholder="Ingrese la capacidad de Sala">
                     <input id="idUpdate" name="id" class="form-control ocultar" type="text" placeholder="Ingrese el nombre del Grado">
                 </form>
             </div>
