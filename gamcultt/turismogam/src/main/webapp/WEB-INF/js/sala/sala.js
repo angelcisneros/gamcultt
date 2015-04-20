@@ -54,7 +54,7 @@ $(document).on('ready', function() {
             cierraPopUpChiquito($('#casaAdd'));
             requisitos++;
         }
-        if ($.isNumeric(capacidad)) {
+        if (!$.isNumeric(capacidad)) {
             muestraPopUpCampoNoVacio($('#capacidadAdd'));
             $('#capacidadAdd').css("border", "1px solid red");
         } else {
@@ -82,13 +82,13 @@ $(document).on('ready', function() {
                         $('.nuevoSala').removeClass();
                         $("#salaTbody").prepend(
                                 '<tr valign="top" class="success nuevoSala">'+
-                                '<td class="id">'+
+                                '<td class="nombre">'+
                                     '<label class="nombre">' + nombre +'</label>'+
                                     '<label id="' + respuesta[2] + '" class="ocultar">' + respuesta[2] + '</label>'+
                                 '</td>'+
-                                '<td>'+
+                                '<td class="casaNombre">'+
                                     '<label class="casaNombre">' + $('#casaAdd option:selected').text() + '</label>'+
-                                '</td>'+
+                                '</td class="capacidad">'+
                                 '<td><label class="capacidad">' + capacidad + '</label>'+
                                 '</td>'+
                                 '<td>'+
@@ -140,7 +140,7 @@ $(document).on('ready', function() {
             cierraPopUpChiquito($('#casaUpdate'));
             requisitos++;
         }
-        if ($.isNumeric(capacidad)) {
+        if (!$.isNumeric(capacidad)) {
             muestraPopUpCampoNoVacio($('#capacidadUpdate'));
             $('#capacidadUpdate').css("border", "1px solid red");
         } else {
@@ -167,23 +167,23 @@ $(document).on('ready', function() {
                         $('.nuevoSala').removeClass();
                         $(trClick).attr('class', 'success nuevoSala');
                         $(trClick).html(
-                                '<tr valign="top" class="success nuevoSala">'+
-                                '<td class="id">'+
+                                //'<tr valign="top" class="success nuevoSala">'+
+                                '<td class="nombre">'+
                                     '<label class="nombre">' + nombre +'</label>'+
                                     '<label id="'+ $('#idUpdate').val()+ '" class="ocultar">' + respuesta[2] + '</label>'+
                                 '</td>'+
-                                '<td>'+
+                                '<td class="casaNombre">'+
                                     '<label class="casaNombre">' + $('#casaUpdate :selected').text() + '</label>'+
                                 '</td>'+
-                                '<td><label class="capacidad">' + capacidad + '</label>'+
+                                '<td class="capacidad"><label class="capacidad">' + capacidad + '</label>'+
                                 '</td>'+
                                 '<td>'+
                                     '<div class="btn-group" role="group" aria-label="">'+
                                         '<button class="btn btn-primary salaUpdateButton">Editar</button>'+
                                         '<button class="btn btn-danger salaDeleteButton">Eliminar</button>'+
                                     '</div>'+
-                                '</td>'+
-                            '</tr>'
+                                '</td>'
+                            //'</tr>'
                                 );
                     }
                 },
@@ -229,52 +229,31 @@ $('#salaTbody').on('click', '.salaDeleteButton', function() {
 });
 
 function rellenaPopUpsDelete(selector) {
-    var tds = $($(selector).parent()).siblings('td');
-    var id = $($($($(selector).parent()).siblings('td.id')).children('label.ocultar')).text();
-    var nombre = $($(tds[0]).children('label.nombre')).text();
-    var paterno = $($(tds[0]).children('label.paterno')).text();
-    var materno = $($(tds[0]).children('label.materno')).text();
-    var grado = $($(tds[0]).children('label.grado')).text();
-    var mail = $($(tds[1]).children('label')).text();
-    var empresa = $($(tds[2]).children('label')).text();
-    var telefono1 = $($(tds[3]).children('label.telefono1')).text();
-    var telefono2 = $($(tds[3]).children('label.telefono2')).text();
-    var direccion = $(tds[4]).children('label.telefono2').text();
-    trClick = $($(selector).parent()).parent();
-
+    var tr = $($($($(selector).parent())).parent()).parent();
+    var id = $($($(tr).children('td.nombre')).children('label.ocultar')).text();
+    var nombre = $($($(tr).children('td.nombre')).children('label.nombre')).text();
+    var nombreCasa = $($($(tr).children('td.nombreCasa')).children('label.nombreCasa')).text();
+    var capacidad = $($($(tr).children('td.capacidad')).children('label.capacidad')).text();
+    trClick = $(tr);
     $('#idDelete').val(id);
-    $('#nombreDelete').text(grado + ' ' + nombre + ' ' + paterno + ' ' + materno);
-    $('#empresaDelete').text(empresa);
-    $('#telefonoDelete').text(telefono1 + ' y ' + telefono2);
-    $('#direccionDelete').text(direccion);
-    $('#correoDelete').text(mail);
-
+    $('#nombreDelete').text(nombre);
+    $('#capacidadDelete').text(capacidad);
+    $('#casaDelete').text(nombreCasa);
     $('#popUpSalaDelete').modal('show');
 }
 
 function rellenaPopUpUpdate(selector) {
-    var tds = $($(selector).parent()).siblings('td');
-    var id = $($($($(selector).parent()).siblings('td.id')).children('label.ocultar')).text();
-    var nombre = $($(tds[0]).children('label.nombre')).text();
-    var paterno = $($(tds[0]).children('label.paterno')).text();
-    var materno = $($(tds[0]).children('label.materno')).text();
-    var grado = $($(tds[0]).children('label.grado')).text();
-    var mail = $($(tds[1]).children('label')).text();
-    var empresa = $($(tds[2]).children('label')).text();
-    var telefono1 = $($(tds[3]).children('label.telefono1')).text();
-    var telefono2 = $($(tds[3]).children('label.telefono2')).text();
-    var direccion = $(tds[4]).children('label.telefono2').text();
-    trClick = $($(selector).parent()).parent();
+    var tr = $($($($(selector).parent())).parent()).parent();
+    var id = $($($(tr).children('td.nombre')).children('label.ocultar')).text();
+    var nombre = $($($(tr).children('td.nombre')).children('label.nombre')).text();
+    var nombreCasa = $($($(tr).children('td.nombreCasa')).children('label.nombreCasa')).text();
+    var capacidad = $($($(tr).children('td.capacidad')).children('label.capacidad')).text();
+   
+    trClick = $(tr);
 
     $('#idUpdate').val(id);
     $('#nombreUpdate').val(nombre);
-    $('#paternoUpdate').val(paterno);
-    $('#maternoUpdate').val(materno);
-    setOption($('#gradoUpdate').children('option'), grado);
-    setOption($('#empresaUpdate').children('option'), empresa);
-    $('#telefono1Update').val(telefono1);
-    $('#telefono2Update').val(telefono2);
-    $('#direccionUpdate').val(direccion);
-    $('#mailUpdate').val(mail);
+    $('#capacidadUpdate').val(capacidad);
+    setOption($('#casaUpdate').children('option'), nombreCasa);
     $('#popUpSalaUpdate').modal('show');
 }

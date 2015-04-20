@@ -44,7 +44,7 @@ public class SalaController {
     
     @ResponseBody
     @RequestMapping(value = "agregarSala", method = RequestMethod.POST)
-    public String agregarSala(@Valid @ModelAttribute("sala") Sala sala, MultipartFile formato, BindingResult bindingResult, HttpSession session) {
+    public String agregarSala(@Valid @ModelAttribute("sala") Sala sala, BindingResult bindingResult, HttpSession session) {
 //        if (session.getAttribute("usuario") == null){
 //            return SESION_CADUCA;
 //        }

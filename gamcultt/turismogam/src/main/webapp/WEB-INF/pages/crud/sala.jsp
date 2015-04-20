@@ -33,15 +33,15 @@
                     <tbody id="salaTbody">
                         <c:forEach items="${salas}" var="s" varStatus="status">
                             <tr valign="top">
-                                <td class="id">
-                                    <label>${s.nombre}</label>
+                                <td class="nombre">
+                                    <label class="nombre">${s.nombre}</label>
                                     <label id="${s.id}" class="ocultar">${s.id}</label>
                                 </td>
-                                <td>
-                                    <label class="nombre">${s.casa.nombre}</label>
+                                <td class="nombreCasa">
+                                    <label class="nombreCasa">${s.casa.nombre}</label>
                                 </td>
-                                <td>
-                                    <label>${s.capacidad}</label>
+                                <td class="capacidad">
+                                    <label class="capacidad">${s.capacidad}</label>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="">
@@ -77,7 +77,7 @@
                     <label>Casa:</label>
                     <select id="casaAdd" name="casa.id" class="form-control">
                         <option value="0" label="Seleccione...">Seleccione...</option>
-                        <c:forEach items="${casas}" var="p" varStatus="status">
+                        <c:forEach items="${casas}" var="c" varStatus="status">
                             <option value="${c.id}" label="${c.nombre}">${c.nombre}</option>
                         </c:forEach>
                     </select>
@@ -96,7 +96,7 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- POPUP ACTUALIZAR ALUMNO -->
+<!-- POPUP ACTUALIZAR CASA -->
 <div class="modal fade" id="popUpSalaUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -114,7 +114,7 @@
                     <label>Casa:</label>
                     <select id="casaUpdate" name="casa.id" class="form-control">
                         <option value="0" label="Seleccione...">Seleccione...</option>
-                        <c:forEach items="${casas}" var="p" varStatus="status">
+                        <c:forEach items="${casas}" var="c" varStatus="status">
                             <option value="${c.id}" label="${c.nombre}">${c.nombre}</option>
                         </c:forEach>
                     </select>
@@ -149,17 +149,11 @@
                     <strong><label>Nombre:</label></strong>
                     <label id="nombreDelete"></label>
                     <br>
-                    <strong><label>Empresa</label></strong>
-                    <label id="empresaDelete"></label>
+                    <strong><label>Casa:</label></strong>
+                    <label id="casaDelete"></label>
                     <br>
-                    <strong><label>Correo</label></strong>
-                    <label id="correoDelete"></label>
-                    <br>
-                    <strong><label>Télefonos:</label></strong>
-                    <label id="telefonoDelete"></label>
-                    <br>
-                    <strong><label>Dirección:</label></strong>
-                    <label id="direccionDelete"></label>
+                    <strong><label>Capacidad:</label></strong>
+                    <label id="capacidadDelete"></label>
                     <input id="idDelete" name="id" class="form-control ocultar" type="text" placeholder="Ingrese el nombre del Sala">
                 </form>
             </div>

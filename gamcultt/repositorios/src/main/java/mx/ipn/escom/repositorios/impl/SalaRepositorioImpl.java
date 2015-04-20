@@ -11,6 +11,7 @@ import mx.ipn.escom.repositorios.SalaRepositorio;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,6 +79,7 @@ public class SalaRepositorioImpl implements SalaRepositorio{
     @Override
     public List<Sala> buscarTodos() {
         return (List<Sala>) sessionFactory.getCurrentSession().createCriteria(Sala.class)
+                .createAlias("casa", "c", JoinType.INNER_JOIN)
                 .list();
     }
     
